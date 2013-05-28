@@ -25,7 +25,7 @@ set wildmenu
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " mini buf
-let g:miniBufExplMapWindowNavVim = 1 
+"let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
@@ -56,6 +56,7 @@ map <F5> :w<cr> :!python %<cr>
 
 " python
 set backspace=2
+set colorcolumn=79
 "set textwidth=79
 
 " taglist
@@ -63,3 +64,8 @@ let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只�
 let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
 
 set autoread
+
+nnoremap <C-k>  mz:m-2<cr>`z==
+nnoremap <C-j>  mz:m+<cr>`z==
+xnoremap <C-k>  :m'<-2<cr>gv=gv
+xnoremap <C-j>  :m'>+<cr>gv=gv
