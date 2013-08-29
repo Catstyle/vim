@@ -18,7 +18,6 @@ filetype on
 filetype plugin on
 filetype plugin indent on
 
-"let g:pydiction_location='/home/haibin/.vim/after/ftplugin/pydiction/complete-dict'
 set completeopt+=longest
 set completeopt+=menu
 set wildmenu
@@ -44,7 +43,7 @@ set shiftwidth=4
 set softtabstop=4
 
 " fold code
-set foldmethod=indent
+set foldmethod=manual
 
 set cursorline      "高亮当前行背景
 set fileencodings=UTF-8,GBK,BIG5,latin1
