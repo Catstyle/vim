@@ -5,6 +5,7 @@ syntax on " syntax highlighting on
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set incsearch " do highlight as you type you search phrase
+set hlsearch
 set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
 
@@ -62,6 +63,3 @@ nnoremap <C-k>  mz:m-2<cr>`z==
 nnoremap <C-j>  mz:m+<cr>`z==
 xnoremap <C-k>  :m'<-2<cr>gv=gv
 xnoremap <C-j>  :m'>+<cr>gv=gv
-
-" pep8 shortcut
-let g:pep8_map='<F8>'
