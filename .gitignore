@@ -170,4 +170,4 @@ include
 lib
 
 # dev
-settings_dev.py
+*.netrwhist

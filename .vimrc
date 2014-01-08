@@ -47,6 +47,7 @@ set fileformat=unix "换行使用unix方式
 
 " shortcut
 map <F5> :w<cr> :!python %<cr>
+nmap <F8> :TagbarToggle<CR>
 let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
 
 " python
