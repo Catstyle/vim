@@ -171,3 +171,4 @@ lib
 
 # dev
 *.netrwhist
+.vim/.netrwhist
