@@ -1,6 +1,9 @@
 set nocompatible " explictly get out of vi-compatible mode
 set background=dark " we plan to use a dark background
 
+" init pathogen
+execute pathogen#infect()
+
 syntax on " syntax highlighting on
 set number " turn on line numbers
 set ruler "always show current position along the bottom
