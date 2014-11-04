@@ -21,7 +21,7 @@ nnoremap <Leader>kw <C-W>k
 nnoremap <Leader>jw <C-W>j
 
 set background=dark " we plan to use a dark background
-colorscheme solarized
+colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
 set gcr=a:block-blinkon0 " no blink cursor
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 let g:Powerline_colorscheme='solarized256'
@@ -32,7 +32,7 @@ set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
 set cursorline      "highlight current line
-set cursorcolumn    "highlight current column
+"set cursorcolumn    "highlight current column
 
 set incsearch " do highlight as you type you search phrase
 set hlsearch
