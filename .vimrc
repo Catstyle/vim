@@ -21,10 +21,12 @@ nnoremap <Leader>kw <C-W>k
 nnoremap <Leader>jw <C-W>j
 
 set background=dark " we plan to use a dark background
+"let g:solarized_termcolors=256
 colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
+set t_Co=16
+let g:Powerline_colorscheme='solarized256'
 set gcr=a:block-blinkon0 " no blink cursor
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
-let g:Powerline_colorscheme='solarized256'
 
 syntax enable
 syntax on " syntax highlighting on
