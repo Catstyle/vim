@@ -21,9 +21,8 @@ nnoremap <Leader>kw <C-W>k
 nnoremap <Leader>jw <C-W>j
 
 set background=dark " we plan to use a dark background
-"let g:solarized_termcolors=256
-colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
 set t_Co=16
+colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
 let g:Powerline_colorscheme='solarized256'
 set gcr=a:block-blinkon0 " no blink cursor
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
@@ -63,6 +62,7 @@ set softtabstop=4
 
 " fold code
 set foldmethod=manual
+set nofoldenable
 
 set fileencodings=UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
