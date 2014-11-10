@@ -14,7 +14,7 @@ nmap <Leader>Q :qa!<CR>
 
 nmap <Leader>pa %
 
-nnoremap nw <C-W><C-W>
+nnoremap <Leader>nw <C-W><C-W>
 nnoremap <Leader>lw <C-W>l
 nnoremap <Leader>hw <C-W>h
 nnoremap <Leader>kw <C-W>k
@@ -49,8 +49,8 @@ set completeopt+=menu
 set wildmenu
 
 " line begin / line end
-nmap lb 0
-nmap le $
+nmap <Leader>lb 0
+nmap <Leader>le $
 
 " indent
 set autoindent " same level indent
