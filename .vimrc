@@ -12,6 +12,7 @@ nmap <Leader>w :w<CR>
 nmap <Leader>WQ :wa<CR>:q<CR>
 nmap <Leader>Q :qa!<CR>
 nmap <Leader>b :<C-U>exe "buffer ".v:count<CR>
+nmap <Leader>wr <C-W><C-R>
 
 nmap <Leader>pa %
 
