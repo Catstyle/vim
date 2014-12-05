@@ -11,6 +11,7 @@ nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>WQ :wa<CR>:q<CR>
 nmap <Leader>Q :qa!<CR>
+nmap <Leader>b :<C-U>exe "buffer ".v:count<CR>
 
 nmap <Leader>pa %
 
@@ -70,8 +71,7 @@ set fileformat=unix "换行使用unix方式
 
 " python
 set backspace=2
-set colorcolumn=79
-"set textwidth=79
+set colorcolumn=80
 
 set autoread
 
