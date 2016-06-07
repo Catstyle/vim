@@ -71,6 +71,7 @@ set nofoldenable
 set fileencodings=UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
 set fileformat=unix "换行使用unix方式
+set fileformats=unix "换行使用unix方式
 
 " python
 set backspace=2
@@ -102,6 +103,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " shortcut
 map <F5> :w<cr> :!python %<cr>
+map <F6> :w<cr> :!go run %<cr>
 nmap <F8> :TagbarToggle<CR>
 let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
 
