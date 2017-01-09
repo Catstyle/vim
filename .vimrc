@@ -73,6 +73,9 @@ set fileencoding=UTF-8
 set fileformat=unix "换行使用unix方式
 set fileformats=unix "换行使用unix方式
 
+set termencoding=UTF-8
+set encoding=UTF-8
+
 " python
 set backspace=2
 set colorcolumn=80
