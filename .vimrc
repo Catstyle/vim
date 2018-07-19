@@ -6,8 +6,6 @@ execute pathogen#infect()
 
 set background=dark " we plan to use a dark background
 set t_Co=16
-colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
-let g:Powerline_colorscheme='solarized256'
 set gcr=a:block-blinkon0 " no blink cursor
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
@@ -100,6 +98,9 @@ nmap <Leader>le $
 " plugins
 
 let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
+
+colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
+let g:Powerline_colorscheme='solarized256'
 
 " taglist
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的 
