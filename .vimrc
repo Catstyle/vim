@@ -4,26 +4,6 @@ set nocompatible " explictly get out of vi-compatible mode
 " init pathogen
 execute pathogen#infect()
 
-vnoremap <Leader>y "+y
-nmap <Leader>p "+p
-
-nmap <Leader>q :q<CR>
-nmap <Leader>w :w<CR>
-nmap <Leader>WQ :wa<CR>:q<CR>
-nmap <Leader>Q :qa!<CR>
-nmap <Leader>b :<C-U>exe "buffer ".v:count<CR>
-nmap <Leader>wr <C-W><C-R>
-nmap <Leader>e :e<SPACE>
-nmap <Leader>vs :vs<SPACE>
-
-nmap <Leader>pa %
-
-nnoremap <Leader>nw <C-W><C-W>
-nnoremap <Leader>lw <C-W>l
-nnoremap <Leader>hw <C-W>h
-nnoremap <Leader>kw <C-W>k
-nnoremap <Leader>jw <C-W>j
-
 set background=dark " we plan to use a dark background
 set t_Co=16
 colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
@@ -52,10 +32,6 @@ set completeopt+=longest
 set completeopt+=menu
 set wildmenu
 
-" line begin / line end
-nmap <Leader>lb 0
-nmap <Leader>le $
-
 " indent
 set autoindent " same level indent
 set smartindent " next level indent
@@ -82,10 +58,48 @@ set colorcolumn=80
 
 set autoread
 
+" shortcut
+
+vnoremap <Leader>y "+y
+nmap <Leader>p "+p
+
+nmap <Leader>q :q<CR>
+nmap <Leader>w :w<CR>
+nmap <Leader>WQ :wa<CR>:q<CR>
+nmap <Leader>Q :qa!<CR>
+nmap <Leader>b :<C-U>exe "buffer ".v:count<CR>
+nmap <Leader>wr <C-W><C-R>
+nmap <Leader>e :e<SPACE>
+nmap <Leader>vs :vs<SPACE>
+
+nmap <Leader>pa %
+
+nnoremap <Leader>nw <C-W><C-W>
+nnoremap <Leader>lw <C-W>l
+nnoremap <Leader>hw <C-W>h
+nnoremap <Leader>kw <C-W>k
+nnoremap <Leader>jw <C-W>j
 nnoremap <C-k>  mz:m-2<cr>`z==
 nnoremap <C-j>  mz:m+<cr>`z==
 xnoremap <C-k>  :m'<-2<cr>gv=gv
 xnoremap <C-j>  :m'>+<cr>gv=gv
+
+map <F5> :w<cr> :!python %<cr>
+map <F6> :w<cr> :!go run %<cr>
+nmap <F8> :TagbarToggle<CR>
+
+"search in project
+nnoremap <Leader>sp :Grep -ir<CR><CR><CR>
+"search in buffer
+nnoremap <Leader>sb :GrepBuffer -ir<CR><CR>
+
+" line begin / line end
+nmap <Leader>lb 0
+nmap <Leader>le $
+
+" plugins
+
+let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
 
 " taglist
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的 
@@ -98,29 +112,13 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-" If you prefer the Omni-Completion tip window to close when a selection is
-" " made, these lines close it on movement in insert mode or when leaving
-" " insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" ale
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_fix_on_save = 1
 
-" shortcut
-map <F5> :w<cr> :!python %<cr>
-map <F6> :w<cr> :!go run %<cr>
-nmap <F8> :TagbarToggle<CR>
-let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-"search in project
-nnoremap <Leader>sp :Grep -ir<CR><CR><CR>
-"search in buffer
-nnoremap <Leader>sb :GrepBuffer -ir<CR><CR>
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
