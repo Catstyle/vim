@@ -14,7 +14,7 @@ syntax on " syntax highlighting on
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
-set cursorline      "highlight current line
+set nocursorline      "highlight current line
 "set cursorcolumn    "highlight current column
 
 set incsearch " do highlight as you type you search phrase
