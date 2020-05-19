@@ -2,12 +2,7 @@ let mapleader=";" " prefix ';'
 set nocompatible " explictly get out of vi-compatible mode
 
 " init pathogen
-execute pathogen#infect()
-
-set background=dark " we plan to use a dark background
-set t_Co=16
-set gcr=a:block-blinkon0 " no blink cursor
-set guifont=YaHei\ Consolas\ Hybrid\ 11.5
+" execute pathogen#infect()
 
 syntax enable
 syntax on " syntax highlighting on
@@ -29,6 +24,21 @@ filetype plugin indent on
 set completeopt+=longest
 set completeopt+=menu
 set wildmenu
+
+set background=dark " we plan to use a dark background
+" termguicolors
+set t_Co=16
+colorscheme solarized8_low
+let g:solarized_termcolors=16
+let g:solarized_use16=1
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set term=xterm-256color
+set termencoding=utf-8
+set gcr=a:block-blinkon0 " no blink cursor
+set guifont=Source\ Code\ Pro\ For\ Powerline:h15
 
 " indent
 set autoindent " same level indent
@@ -99,8 +109,11 @@ nmap <Leader>le $
 
 let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
 
-colorscheme solarized " need to install https://github.com/Anthony25/gnome-terminal-colors-solarized first
-let g:Powerline_colorscheme='solarized256'
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+let g:Powerline_colorscheme='solarized'
+let g:Powerline_symbols = 'fancy'
 
 " taglist
 let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的 
