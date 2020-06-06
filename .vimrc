@@ -62,7 +62,7 @@ set encoding=UTF-8
 
 " python
 set backspace=2
-set colorcolumn=80
+set colorcolumn=100
 
 set autoread
 
