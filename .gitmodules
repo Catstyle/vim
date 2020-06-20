@@ -1,0 +1,15 @@
+[submodule ".vim/pack/git-plugins/opt/solarized8"]
+	path = .vim/pack/git-plugins/opt/solarized8
+	url = https://github.com/lifepillar/vim-solarized8.git
+[submodule ".vim/pack/git-plugins/start/ale"]
+	path = .vim/pack/git-plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git
+[submodule ".vim/pack/git-plugins/start/tagbar"]
+	path = .vim/pack/git-plugins/start/tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule ".vim/pack/git-plugins/start/vim-surround"]
+	path = .vim/pack/git-plugins/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/pack/git-plugins/start/vim-virtualenv"]
+	path = .vim/pack/git-plugins/start/vim-virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv.git
