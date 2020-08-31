@@ -97,9 +97,9 @@ map <F6> :w<cr> :!go run %<cr>
 nmap <F8> :TagbarToggle<CR>
 
 "search in project
-nnoremap <Leader>sp :Grep -ir<CR><CR><CR>
+nnoremap <Leader>sp :Grep -r<CR><CR><CR>
 "search in buffer
-nnoremap <Leader>sb :GrepBuffer -ir<CR><CR>
+nnoremap <Leader>sb :GrepBuffer -r<CR><CR>
 
 " line begin / line end
 nmap <Leader>lb 0
