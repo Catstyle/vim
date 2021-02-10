@@ -48,6 +48,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" shortcut for disable auto indent when pasting
+set pastetoggle=<F3>
+
 " fold code
 set foldmethod=manual
 set nofoldenable
@@ -62,7 +65,7 @@ set encoding=UTF-8
 
 " python
 set backspace=2
-set colorcolumn=100
+set colorcolumn=79
 
 set autoread
 
@@ -105,19 +108,29 @@ nnoremap <Leader>sb :GrepBuffer -r<CR><CR>
 nmap <Leader>lb 0
 nmap <Leader>le $
 
+" a hacky solution to share clipboard content between vim instances
+" save selected lines into a tmp file
+vmap <leader>y :w! ~/.vimtmp<CR>
+" load content from the tmp file and paste
+nmap <leader>p :r! cat ~/.vimtmp<CR>
+
 " plugins
 
 let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
+try
+    python3 from powerline.vim import setup as powerline_setup
+    python3 powerline_setup()
+    python3 del powerline_setup
+catch
+    echo 'error calling python Powerline'
+endtry
 let g:Powerline_colorscheme='solarized'
 let g:Powerline_symbols = 'fancy'
 
 " taglist
-let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的 
-let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
 
 " mini buf
 "let g:miniBufExplMapWindowNavVim = 1
