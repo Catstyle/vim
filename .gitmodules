@@ -13,3 +13,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-virtualenv"]
 	path = .vim/pack/git-plugins/start/vim-virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv.git
+[submodule ".vim/pack/plugins/start/vim-go"]
+	path = .vim/pack/plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git
