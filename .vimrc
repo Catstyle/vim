@@ -23,6 +23,7 @@ filetype plugin indent on
 
 set completeopt+=longest
 set completeopt+=menu
+let g:ale_completion_enabled = 1
 set wildmenu
 
 set background=dark " we plan to use a dark background
