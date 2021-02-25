@@ -97,8 +97,8 @@ nnoremap <C-j>  mz:m+<cr>`z==
 xnoremap <C-k>  :m'<-2<cr>gv=gv
 xnoremap <C-j>  :m'>+<cr>gv=gv
 
-map <F5> :w<cr> :!python %<cr>
-map <F6> :w<cr> :!go run %<cr>
+" map <F5> :w<cr> :!python %<cr>
+" map <F6> :w<cr> :!go run %<cr>
 nmap <F8> :TagbarToggle<CR>
 
 "search in project
@@ -115,6 +115,9 @@ nmap <Leader>le $
 vmap <leader>y :w! ~/.vimtmp<CR>
 " load content from the tmp file and paste
 nmap <leader>p :r! cat ~/.vimtmp<CR>
+
+" python
+autocmd FileType python nmap <leader>r :!python %<CR>
 
 " plugins
 
@@ -139,7 +142,6 @@ let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则�
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " ale
 let g:ale_lint_on_text_changed = 'never'
