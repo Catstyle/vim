@@ -23,7 +23,6 @@ filetype plugin indent on
 
 set completeopt+=longest
 set completeopt+=menu
-let g:ale_completion_enabled = 1
 set wildmenu
 
 set background=dark " we plan to use a dark background
@@ -142,17 +141,25 @@ endtry
 let g:Powerline_colorscheme='solarized'
 let g:Powerline_symbols = 'fancy'
 
+"
 " taglist
+"
 let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
 
+"
 " mini buf
+"
 "let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
+"
 " ale
+"
+let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 
