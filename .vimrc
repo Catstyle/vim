@@ -6,7 +6,7 @@ syntax on " syntax highlighting on
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
-set nocursorline      "highlight current line
+set cursorline      "highlight current line
 "set cursorcolumn    "highlight current column
 
 set incsearch " do highlight as you type you search phrase
@@ -119,6 +119,12 @@ nmap <leader>p :r! cat ~/.vimtmp<CR>
 " python
 autocmd FileType python nmap <leader>r :!python %<CR>
 
+"
+" yaml
+"
+autocmd FileType yaml set tabstop=2
+autocmd FileType yaml set shiftwidth=2
+autocmd FileType yaml set softtabstop=2
 
 """"""""""""""""""" plugins """""""""""""""""""""""""
 
@@ -147,10 +153,12 @@ let g:airline#extensions#tabline#buffer_nr_show = 1  "tabline中buffer显示编�
 let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
 
+
 "
 " ale
 "
 let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 
@@ -189,3 +197,19 @@ autocmd FileType go nmap <leader>bd  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+"
+" vim markdown preview
+"
+
+" Treat all .md files as markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" Highlight the line the cursor is on
+autocmd FileType markdown set cursorline
+
+" Hide and format markdown elements like **bold**
+autocmd FileType markdown set conceallevel=2
+
+" Set spell check to British English
+autocmd FileType markdown setlocal spell spelllang=en_gb
