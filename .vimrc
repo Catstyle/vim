@@ -1,9 +1,6 @@
 let mapleader=";" " prefix ';'
 set nocompatible " explictly get out of vi-compatible mode
 
-" init pathogen
-" execute pathogen#infect()
-
 syntax enable
 syntax on " syntax highlighting on
 set number " turn on line numbers
@@ -23,15 +20,15 @@ filetype plugin indent on
 
 set completeopt+=longest
 set completeopt+=menu
-let g:ale_completion_enabled = 1
 set wildmenu
 
 set background=dark " we plan to use a dark background
 " termguicolors
-set t_Co=16
+set t_Co=256
+let g:solarized_termcolors=256
+let g:solarized_use16=0
+let g:solarized_termtrans = 1
 colorscheme solarized8_low
-let g:solarized_termcolors=16
-let g:solarized_use16=1
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -39,7 +36,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set term=xterm-256color
 set termencoding=utf-8
 set gcr=a:block-blinkon0 " no blink cursor
-set guifont=Source\ Code\ Pro\ For\ Powerline:h15
+" set guifont=Source\ Code\ Pro\ For\ Powerline:h15
+set guifont=MesloLGS\ NF:h15
 
 " indent
 set autoindent " same level indent
@@ -71,7 +69,9 @@ set colorcolumn=79
 
 set autoread
 
-" shortcut
+"
+" shortcuts
+"
 
 vnoremap <Leader>y "+y
 nmap <Leader>p "+p
@@ -119,31 +119,38 @@ nmap <leader>p :r! cat ~/.vimtmp<CR>
 " python
 autocmd FileType python nmap <leader>r :!python %<CR>
 
-" plugins
 
-let g:virtualenv_auto_activate=$VIM_ACTIVATE_PYTHON
+""""""""""""""""""" plugins """""""""""""""""""""""""
 
-try
-    python3 from powerline.vim import setup as powerline_setup
-    python3 powerline_setup()
-    python3 del powerline_setup
-catch
-    echo 'error calling python Powerline'
-endtry
-let g:Powerline_colorscheme='solarized'
-let g:Powerline_symbols = 'fancy'
 
+"
+" airline
+"
+let g:airline_theme='deus'
+" let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
+
+let g:airline#extensions#branch#enabled=1
+let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#virtualenv#enabled=1
+
+" 开启tabline
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '  "tabline中当前buffer两端的分隔字符
+let g:airline#extensions#tabline#left_alt_sep = '|'  "tabline中未激活buffer两端的分隔字符
+let g:airline#extensions#tabline#buffer_nr_show = 1  "tabline中buffer显示编号
+
+
+"
 " taglist
+"
 let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
 
-" mini buf
-"let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
-
+"
 " ale
+"
+let g:ale_completion_enabled = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 
@@ -155,7 +162,9 @@ let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
 
+"
 " vim-go
+"
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 let g:go_auto_type_info = 1

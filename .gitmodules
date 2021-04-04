@@ -16,3 +16,12 @@
 [submodule ".vim/pack/plugins/start/vim-go"]
 	path = .vim/pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/git-plugins/start/vim-airline"]
+	path = .vim/pack/git-plugins/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule ".vim/pack/git-plugins/start/vim-airline-themes"]
+	path = .vim/pack/git-plugins/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule ".vim/pack/git-plugins/start/fugitive"]
+	path = .vim/pack/git-plugins/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
