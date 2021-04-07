@@ -62,6 +62,8 @@ set fileformats=unix "换行使用unix方式
 set termencoding=UTF-8
 set encoding=UTF-8
 set updatetime=100
+" increased maxmempattern size
+set mmp=2000
 
 " python
 set backspace=2
@@ -140,6 +142,9 @@ let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#virtualenv#enabled=1
 
+" branch - hunks
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}'
+
 " 开启tabline
 let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '  "tabline中当前buffer两端的分隔字符
@@ -212,4 +217,4 @@ autocmd FileType markdown set cursorline
 autocmd FileType markdown set conceallevel=2
 
 " Set spell check to British English
-autocmd FileType markdown setlocal spell spelllang=en_gb
+" autocmd FileType markdown setlocal spell spelllang=en_gb

@@ -25,3 +25,9 @@
 [submodule ".vim/pack/git-plugins/start/fugitive"]
 	path = .vim/pack/git-plugins/start/fugitive
 	url = https://tpope.io/vim/fugitive.git
+[submodule ".vim/pack/git-plugins/start/riv.vim"]
+	path = .vim/pack/git-plugins/start/riv.vim
+	url = https://github.com/gu-fan/riv.vim.git
+[submodule ".vim/pack/git-plugins/start/vim-gitgutter"]
+	path = .vim/pack/git-plugins/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
