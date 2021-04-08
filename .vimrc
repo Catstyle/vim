@@ -3,6 +3,9 @@ set nocompatible " explictly get out of vi-compatible mode
 
 syntax enable
 syntax on " syntax highlighting on
+
+" 设置为双字宽显示，否则无法完整显示如:☆
+set ambiwidth=double
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
@@ -219,3 +222,9 @@ autocmd FileType markdown set conceallevel=2
 
 " Set spell check to British English
 " autocmd FileType markdown setlocal spell spelllang=en_gb
+
+"
+" vim rst plugin: riv.vim
+"
+
+let g:riv_disable_folding=1
