@@ -31,3 +31,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-gitgutter"]
 	path = .vim/pack/git-plugins/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/pack/git-plugins/start/jedi-vim"]
+	path = .vim/pack/git-plugins/start/jedi-vim
+	url = https://github.com/davidhalter/jedi-vim.git

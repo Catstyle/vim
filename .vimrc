@@ -167,13 +167,14 @@ let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则�
 " ale
 "
 let g:ale_completion_enabled = 1
-set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_autoimport = 1
+
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
@@ -228,3 +229,10 @@ autocmd FileType markdown set conceallevel=2
 "
 
 let g:riv_disable_folding=1
+
+"
+" jedi-vim
+"
+
+" <leader>r almost map to run code
+let g:jedi#rename_command = "<leader>rn"
