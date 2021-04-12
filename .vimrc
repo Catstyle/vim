@@ -4,6 +4,10 @@ set nocompatible " explictly get out of vi-compatible mode
 syntax enable
 syntax on " syntax highlighting on
 
+filetype on
+filetype plugin on
+filetype plugin indent on
+
 " 设置为双字宽显示，否则无法完整显示如:☆
 set ambiwidth=double
 set number " turn on line numbers
@@ -16,31 +20,6 @@ set incsearch " do highlight as you type you search phrase
 set hlsearch
 set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
-
-filetype on
-filetype plugin on
-filetype plugin indent on
-
-set completeopt+=longest
-set completeopt+=menu
-set wildmenu
-
-set background=dark " we plan to use a dark background
-" termguicolors
-set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_use16=0
-let g:solarized_termtrans = 1
-colorscheme solarized8_low
-
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-set term=xterm-256color
-set termencoding=utf-8
-set gcr=a:block-blinkon0 " no blink cursor
-" set guifont=Source\ Code\ Pro\ For\ Powerline:h15
-set guifont=MesloLGS\ NF:h15
 
 " indent
 set autoindent " same level indent
@@ -59,8 +38,8 @@ set nofoldenable
 
 set fileencodings=UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
-set fileformat=unix "换行使用unix方式
-set fileformats=unix "换行使用unix方式
+set fileformat=unix
+set fileformats=unix
 
 set termencoding=UTF-8
 set encoding=UTF-8
@@ -73,6 +52,30 @@ set backspace=2
 set colorcolumn=79
 
 set autoread
+set noshowmode
+set noshowmatch
+
+set completeopt+=longest
+set completeopt+=menu
+set completeopt-=preview
+set wildmenu
+
+set background=dark " we plan to use a dark background
+" termguicolors
+set t_Co=256
+let g:solarized_termcolors=256
+let g:solarized_use16=0
+let g:solarized_termtrans = 1
+colorscheme solarized8_low
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set term=xterm-256color
+set termencoding=utf-8
+set gcr=a:block-blinkon0 " no blink cursor
+" set guifont=Source\ Code\ Pro\ For\ Powerline:h15
+set guifont=MesloLGS\ NF:h15
 
 "
 " shortcuts
@@ -166,8 +169,8 @@ let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则�
 "
 " ale
 "
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
+" let g:ale_completion_enabled = 1
+" let g:ale_completion_autoimport = 1
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_fix_on_save = 1
@@ -228,7 +231,7 @@ autocmd FileType markdown set conceallevel=2
 " vim rst plugin: riv.vim
 "
 
-let g:riv_disable_folding=1
+let g:riv_disable_folding = 1
 
 "
 " jedi-vim
@@ -236,3 +239,7 @@ let g:riv_disable_folding=1
 
 " <leader>r almost map to run code
 let g:jedi#rename_command = "<leader>rn"
+
+let g:jedi#popup_on_dot = 0
+let g:jedi#show_call_signatures = 2
+let g:jedi#smart_auto_mappings = 1
