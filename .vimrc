@@ -9,7 +9,7 @@ filetype plugin on
 filetype plugin indent on
 
 " 设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double
+" set ambiwidth=double
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
@@ -67,6 +67,8 @@ let g:solarized_termcolors=256
 let g:solarized_use16=0
 let g:solarized_termtrans = 1
 colorscheme solarized8_low
+
+" reduce color of colorcolumn
 highlight ColorColumn ctermbg=0
 
 " for vim inside tmux
@@ -161,6 +163,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'  "tabline中未激活buffer两端的分隔字符
 let g:airline#extensions#tabline#buffer_nr_show = 1  "tabline中buffer显示编号
 
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
 
 "
 " taglist
@@ -172,11 +179,11 @@ let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则�
 "
 " ale
 "
-" let g:ale_completion_enabled = 1
-" let g:ale_completion_autoimport = 1
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
 
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -185,6 +192,17 @@ let g:ale_echo_msg_format = '[%linter%] %code: %%s [%severity%]'
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
+
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8', 'pylint'],
+\}
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'python': ['autopep8'],
+\}
 
 "
 " vim-go
