@@ -34,3 +34,6 @@
 [submodule ".vim/pack/git-plugins/start/jedi-vim"]
 	path = .vim/pack/git-plugins/start/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule "pack/plugins/start/rust.vim"]
+	path = pack/plugins/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim

@@ -81,6 +81,9 @@ set gcr=a:block-blinkon0 " no blink cursor
 " set guifont=Source\ Code\ Pro\ For\ Powerline:h15
 set guifont=MesloLGS\ NF:h15
 
+set splitbelow
+set termwinsize=10*0
+
 "
 " shortcuts
 "
@@ -196,6 +199,7 @@ let g:ale_open_list = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'python': ['flake8', 'pylint'],
+\   'rust': ['analyzer'],
 \}
 
 let g:ale_fixers = {
@@ -231,6 +235,23 @@ autocmd FileType go nmap <leader>bd  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+
+"
+" rust
+"
+autocmd BufNewFile,BufRead *.rs setlocal noexpandtab colorcolumn=99 textwidth=99
+
+" rust.vim
+let g:rustfmt_autosave = 1
+
+" rust shortcut
+autocmd FileType rust nmap <leader>bd :ter cargo build<CR>
+autocmd FileType rust nmap <leader>r :ter cargo run<CR>
+autocmd FileType rust nmap <leader>R :ter cargo run --release<CR>
+autocmd FileType rust nmap <leader>f :ter ++hidden cargo fmt<CR>
+autocmd FileType rust nmap <Leader>c :ter cargo check<CR>
+
 
 "
 " vim markdown preview
