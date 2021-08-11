@@ -47,17 +47,15 @@ set updatetime=100
 " increased maxmempattern size
 set mmp=2000
 
-" python
 set backspace=2
-set colorcolumn=79
 
 set autoread
 set noshowmode
-set noshowmatch
+" set noshowmatch
 
 set completeopt+=longest
 set completeopt+=menu
-set completeopt-=preview
+set completeopt+=preview
 set wildmenu
 
 set background=dark " we plan to use a dark background
@@ -88,9 +86,6 @@ set termwinsize=10*0
 " shortcuts
 "
 
-vnoremap <Leader>y "+y
-nmap <Leader>p "+p
-
 nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>WQ :wa<CR>:q<CR>
@@ -112,10 +107,6 @@ nnoremap <C-j>  mz:m+<cr>`z==
 xnoremap <C-k>  :m'<-2<cr>gv=gv
 xnoremap <C-j>  :m'>+<cr>gv=gv
 
-" map <F5> :w<cr> :!python %<cr>
-" map <F6> :w<cr> :!go run %<cr>
-nmap <F8> :TagbarToggle<CR>
-
 "search in project
 nnoremap <Leader>sp :Grep -r<CR><CR><CR>
 "search in buffer
@@ -125,22 +116,51 @@ nnoremap <Leader>sb :GrepBuffer -r<CR><CR>
 nmap <Leader>lb 0
 nmap <Leader>le $
 
+" for GUI/with register
+" vnoremap <Leader>y "+y
+" nmap <Leader>p "+p
+
 " a hacky solution to share clipboard content between vim instances
 " save selected lines into a tmp file
 vmap <leader>y :w! ~/.vimtmp<CR>
 " load content from the tmp file and paste
 nmap <leader>p :r! cat ~/.vimtmp<CR>
 
+
+"
 " python
-autocmd FileType python nmap <leader>r :!python %<CR>
-autocmd FileType python nmap <leader>t :!pytest %<CR>
+"
+autocmd FileType python setlocal colorcolumn=79
+autocmd FileType python nmap <leader>r :ter python %<CR>
+autocmd FileType python nmap <leader>t :ter pytest %<CR>
+
 
 "
 " yaml
 "
-autocmd FileType yaml set tabstop=2
-autocmd FileType yaml set shiftwidth=2
-autocmd FileType yaml set softtabstop=2
+autocmd FileType yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+"
+" markdown
+"
+
+" Treat all .md files as markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" Highlight the line the cursor is on
+autocmd FileType markdown setlocal cursorline
+
+" Hide and format markdown elements like **bold**
+autocmd FileType markdown setlocal conceallevel=2
+
+" Set spell check to British English
+" autocmd FileType markdown setlocal spell spelllang=en_gb
+
+"
+" reStructureText
+"
+autocmd FileType rst nmap <leader>ctt :<C-U>exe "RivTitle".v:count<CR>
+
 
 """"""""""""""""""" plugins """""""""""""""""""""""""
 
@@ -178,12 +198,22 @@ let g:airline_symbols.space = "\ua0"
 let Tlist_Show_One_File = 1  "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则退出vim
 
+"
+" tagbar
+"
+nmap <leader>ot :TagbarToggle<CR>
+let g:tagbar_position = 'leftabove vertical'
+
 
 "
 " ale
 "
 let g:ale_completion_enabled = 1
 let g:ale_completion_autoimport = 1
+
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
 
 let g:ale_lint_on_text_changed = 'never'
 " let g:ale_fix_on_save = 1
@@ -196,16 +226,24 @@ let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
 
+nnoremap <leader>gd :ALEGoToDefinition<CR>
+nnoremap <leader>fr :ALEFindReferences<CR>
+nmap <C-n> <Plug>(ale_next_wrap)
+nmap <C-p> <Plug>(ale_previous_wrap)
+
 let g:ale_linters = {
-\   'javascript': ['eslint'],
 \   'python': ['flake8', 'pylint'],
+\   'javascript': ['eslint'],
+\   'go': ['gofmt'],
 \   'rust': ['analyzer'],
 \}
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
 \   'python': ['autopep8'],
+\   'javascript': ['eslint'],
+\   'go': ['gofmt', 'goimports', 'gomod'],
+\   'rust': ['rustfmt'],
 \}
 
 "
@@ -225,14 +263,10 @@ let g:go_test_timeout = '10s'
 let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
 let g:go_metalinter_autosave = 1
 
-map <C-n> :cnext<CR>
-map <C-p> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
-
 " vim-go shortcut
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 autocmd FileType go nmap <leader>bd  <Plug>(go-build)
-autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
@@ -254,25 +288,8 @@ autocmd FileType rust nmap <Leader>c :ter cargo check<CR>
 
 
 "
-" vim markdown preview
-"
-
-" Treat all .md files as markdown
-autocmd BufNewFile,BufRead *.md set filetype=markdown
-
-" Highlight the line the cursor is on
-autocmd FileType markdown set cursorline
-
-" Hide and format markdown elements like **bold**
-autocmd FileType markdown set conceallevel=2
-
-" Set spell check to British English
-" autocmd FileType markdown setlocal spell spelllang=en_gb
-
-"
 " vim rst plugin: riv.vim
 "
-
 let g:riv_disable_folding = 1
 
 "
