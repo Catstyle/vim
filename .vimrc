@@ -55,7 +55,7 @@ set noshowmode
 
 set completeopt+=longest
 set completeopt+=menu
-set completeopt+=preview
+set completeopt-=preview
 set wildmenu
 
 set background=dark " we plan to use a dark background
@@ -281,10 +281,13 @@ let g:rustfmt_autosave = 1
 
 " rust shortcut
 autocmd FileType rust nmap <leader>bd :ter cargo build<CR>
+autocmd FileType rust nmap <leader>br :ter cargo build --release<CR>
 autocmd FileType rust nmap <leader>r :ter cargo run<CR>
 autocmd FileType rust nmap <leader>R :ter cargo run --release<CR>
 autocmd FileType rust nmap <leader>f :ter ++hidden cargo fmt<CR>
 autocmd FileType rust nmap <Leader>c :ter cargo check<CR>
+autocmd FileType rust nmap <Leader>d :ter ++shell RUST_BACKTRACE=1 cargo run<CR>
+autocmd FileType rust nmap <Leader>t :ter cargo test<CR>
 
 
 "
