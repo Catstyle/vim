@@ -61,10 +61,18 @@ set wildmenu
 set background=dark " we plan to use a dark background
 " termguicolors
 set t_Co=256
-let g:solarized_termcolors=256
-let g:solarized_use16=0
-let g:solarized_termtrans = 1
-colorscheme solarized8_low
+" let g:solarized_termcolors=256
+" let g:solarized_use16=0
+" let g:solarized_termtrans = 1
+" colorscheme solarized8_low
+
+""""""""""""""""""""
+packadd! edge
+let g:edge_style = 'aura'
+let g:edge_transparent_background = 1
+let g:edge_diagnostic_text_highlight = 1
+
+colorscheme edge
 
 " reduce color of colorcolumn
 highlight ColorColumn ctermbg=0
