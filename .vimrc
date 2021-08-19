@@ -201,7 +201,7 @@ let Tlist_Exit_OnlyWindow = 1  "如果taglist窗口是最后一个窗口，则�
 "
 " tagbar
 "
-nmap <leader>ot :TagbarToggle<CR>
+nmap <leader>tt :TagbarToggle<CR>
 let g:tagbar_position = 'leftabove vertical'
 
 
@@ -234,7 +234,7 @@ nmap <C-p> <Plug>(ale_previous_wrap)
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \   'javascript': ['eslint'],
-\   'go': ['gofmt'],
+\   'go': ['gopls', 'gofmt'],
 \   'rust': ['analyzer'],
 \}
 
@@ -255,8 +255,13 @@ let g:go_auto_type_info = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
-let g:go_auto_sameids = 1 " highlighting the same identifier
+" let g:go_auto_sameids = 1 " highlighting the same identifier
 
+"""""""""""""""""""""""""""""""
+" need to call GoInstallBinaries/GoUpdateBinaries for new version
+"""""""""""""""""""""""""""""""
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 let g:go_fmt_command = "goimports" " add missing imports when save file
 let g:go_test_timeout = '10s'
 
