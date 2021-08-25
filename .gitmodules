@@ -43,3 +43,6 @@
 [submodule ".vim/pack/git-plugins/opt/edge"]
 	path = .vim/pack/git-plugins/opt/edge
 	url = https://github.com/sainnhe/edge
+[submodule ".vim/pack/plugins/start/vim-polyglot"]
+	path = .vim/pack/plugins/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot

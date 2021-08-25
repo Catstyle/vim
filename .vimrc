@@ -1,6 +1,9 @@
 let mapleader=";" " prefix ';'
 set nocompatible " explictly get out of vi-compatible mode
 
+"=====================
+" general settings
+"=====================
 syntax enable
 syntax on " syntax highlighting on
 
@@ -13,9 +16,21 @@ filetype plugin indent on
 set number " turn on line numbers
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
-set cursorline      "highlight current line
-"set cursorcolumn    "highlight current column
+" set cursorline      "highlight current line
+" set cursorcolumn    "highlight current column
 
+set colorcolumn=100
+set signcolumn=yes                   " Always show the sign column
+set backspace=2
+set termwinsize=10*0
+set splitbelow
+set updatetime=200
+
+set autoread
+set noshowmode  " show mode in airline
+" set noshowmatch
+
+" search settings
 set incsearch " do highlight as you type you search phrase
 set hlsearch
 set ignorecase " case insensitive by default
@@ -36,6 +51,7 @@ set pastetoggle=<F3>
 set foldmethod=manual
 set nofoldenable
 
+" encoding settings
 set fileencodings=UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
 set fileformat=unix
@@ -43,28 +59,36 @@ set fileformats=unix
 
 set termencoding=UTF-8
 set encoding=UTF-8
-set updatetime=100
+
 " increased maxmempattern size
 set mmp=2000
+set shortmess+=c                     " Silence completion messages
+set shortmess-=S                     " Enable showing the search index
+set showbreak=>>>                    " Show clearly were linebreaks are applied
+set spelllang=en_us                  " Set default spell check language to English US
 
-set backspace=2
-
-set autoread
-set noshowmode
-" set noshowmatch
-
-set completeopt+=longest
-set completeopt+=menu
-set completeopt-=preview
+" wildmenu completion settings
 set wildmenu
+set wildmode=list:full                           " Wildcard matches the longest and shows a list
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=*.pyc                            " Python byte code
+set wildignore+=*.orig                           " Merge resolution files
 
+" completion settings
+set completeopt=menu,menuone,popup,noselect,noinsert
+
+"
+" color
+"
 set background=dark " we plan to use a dark background
 " termguicolors
 set t_Co=256
-" let g:solarized_termcolors=256
-" let g:solarized_use16=0
-" let g:solarized_termtrans = 1
-" colorscheme solarized8_low
 
 """"""""""""""""""""
 packadd! edge
@@ -82,13 +106,9 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set term=xterm-256color
-set termencoding=utf-8
 set gcr=a:block-blinkon0 " no blink cursor
 " set guifont=Source\ Code\ Pro\ For\ Powerline:h15
 set guifont=MesloLGS\ NF:h15
-
-set splitbelow
-set termwinsize=10*0
 
 "
 " shortcuts
@@ -242,7 +262,7 @@ nmap <C-p> <Plug>(ale_previous_wrap)
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \   'javascript': ['eslint'],
-\   'go': ['gopls', 'gofmt'],
+\   'go': ['gopls'],
 \   'rust': ['analyzer'],
 \}
 
@@ -250,7 +270,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8'],
 \   'javascript': ['eslint'],
-\   'go': ['gofmt', 'goimports', 'gomod'],
+\   'go': ['gofmt', 'goimports', 'golines'],
 \   'rust': ['rustfmt'],
 \}
 
@@ -259,10 +279,15 @@ let g:ale_fixers = {
 "
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
 
+let g:go_code_completion_enabled = 0  " use ale for completion
+
 let g:go_auto_type_info = 1
 let g:go_highlight_types = 1
+let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
 " let g:go_auto_sameids = 1 " highlighting the same identifier
 
 """""""""""""""""""""""""""""""
@@ -273,13 +298,14 @@ let g:go_info_mode='gopls'
 let g:go_fmt_command = "goimports" " add missing imports when save file
 let g:go_test_timeout = '10s'
 
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
+" let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+" let g:go_metalinter_autosave = 1
 
 " vim-go shortcut
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 autocmd FileType go nmap <leader>bd  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
+autocmd FileType go nmap <leader>R  :ter go run main.go<CR>
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
