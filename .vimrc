@@ -344,3 +344,8 @@ let g:jedi#rename_command = "<leader>rn"
 let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures = 2
 let g:jedi#smart_auto_mappings = 1
+
+"
+" ultisnips
+"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/mysnippets']
