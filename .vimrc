@@ -263,7 +263,7 @@ let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \   'javascript': ['eslint'],
 \   'go': ['gopls'],
-\   'rust': ['analyzer'],
+\   'rust': ['cargo', 'analyzer'],
 \}
 
 let g:ale_fixers = {
@@ -314,6 +314,9 @@ autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 " rust
 "
 autocmd BufNewFile,BufRead *.rs setlocal noexpandtab colorcolumn=99 textwidth=99
+
+" ale
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 
 " rust.vim
 let g:rustfmt_autosave = 1
