@@ -14,6 +14,7 @@ filetype plugin indent on
 " 设置为双字宽显示，否则无法完整显示如:☆
 " set ambiwidth=double
 set number " turn on line numbers
+set relativenumber
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
 " set cursorline      "highlight current line
@@ -21,7 +22,7 @@ set laststatus=2 "always show status
 
 set colorcolumn=100
 set signcolumn=yes                   " Always show the sign column
-set backspace=2
+set backspace=indent,eol,start
 set termwinsize=10*0
 set splitbelow
 set updatetime=200
@@ -52,7 +53,7 @@ set foldmethod=manual
 set nofoldenable
 
 " encoding settings
-set fileencodings=UTF-8,GBK,BIG5,latin1
+set fileencodings=UCS-BOM,UTF-8,GBK,BIG5,latin1
 set fileencoding=UTF-8
 set fileformat=unix
 set fileformats=unix
@@ -196,14 +197,14 @@ autocmd FileType rst nmap <leader>ctt :<C-U>exe "RivTitle".v:count<CR>
 "
 " airline
 "
-let g:airline_theme='deus'
+let g:airline_theme = 'deus'
 " let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 
-let g:airline#extensions#branch#enabled=1
-let g:airline#extensions#hunks#enabled=1
-let g:airline#extensions#tagbar#enabled=1
-let g:airline#extensions#virtualenv#enabled=1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
 
 " branch - hunks
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),80)}%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}'
@@ -293,8 +294,8 @@ let g:go_highlight_operators = 1
 """""""""""""""""""""""""""""""
 " need to call GoInstallBinaries/GoUpdateBinaries for new version
 """""""""""""""""""""""""""""""
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
 let g:go_fmt_command = "goimports" " add missing imports when save file
 let g:go_test_timeout = '10s'
 
@@ -351,4 +352,7 @@ let g:jedi#smart_auto_mappings = 1
 "
 " ultisnips
 "
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/mysnippets']
+let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/mysnippets']
+" let g:UltiSnipsJumpForwardTrigge = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<leader>k"
+" let g:UltiSnipsRemoveSelectModeMappings = 1
