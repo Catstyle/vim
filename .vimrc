@@ -156,6 +156,46 @@ vmap <leader>y :w! ~/.vimtmp<CR>
 nmap <leader>p :r! cat ~/.vimtmp<CR>
 
 
+function! ScrollPopup(down)
+    " let winid = popup_findinfo()
+    " let winid = popup_findpreview()
+
+    " HACKY!!!! findinfo/findpreview cannot find one!
+    let winid = popup_list()
+    if winid == []
+        return 0
+    endif
+    " naive
+    let winid = winid[0]
+
+    " if the popup window is hidden, bypass the keystrokes
+    let pp = popup_getpos(winid)
+    if pp.visible != 1
+        return 0
+    endif
+
+    let firstline = pp.firstline + a:down
+    let buf_lastline = str2nr(trim(win_execute(winid, "echo line('$')")))
+    if firstline < 1
+        let firstline = 1
+    elseif pp.lastline + a:down > buf_lastline
+        let firstline = firstline - a:down + buf_lastline - pp.lastline
+    endif
+
+    " The appear of scrollbar will change the layout of the content which will cause inconsistent height.
+    call popup_setoptions( winid, { 'firstline' : firstline } )
+    " missing redraw will not take effect?!
+    redraw
+
+    return 1
+endfunction
+
+nnoremap <nowait><expr> <C-e> ScrollPopup(3) ? '' : '<C-e>'
+nnoremap <nowait><expr> <C-y> ScrollPopup(-3) ? '' : '<C-y>'
+inoremap <nowait><expr> <C-e> ScrollPopup(3) ? '' : '<C-e>'
+inoremap <nowait><expr> <C-y> ScrollPopup(-3) ? '' : '<C-y>'
+
+
 "
 " python
 "
@@ -255,10 +295,17 @@ let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
 let g:ale_open_list = 1
 
+let g:ale_hover_cursor = 1
+let g:ale_floating_preview = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+
 nnoremap <leader>gd :ALEGoToDefinition<CR>
 nnoremap <leader>fr :ALEFindReferences<CR>
+nnoremap <leader>s :ALEHover<CR>
 nmap <C-n> <Plug>(ale_next_wrap)
 nmap <C-p> <Plug>(ale_previous_wrap)
+nmap <C-s> <Plug>(ale_hover)
+
 
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
