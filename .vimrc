@@ -4,12 +4,13 @@ set nocompatible " explictly get out of vi-compatible mode
 "=====================
 " general settings
 "=====================
-syntax enable
-syntax on " syntax highlighting on
-
 filetype on
 filetype plugin on
 filetype plugin indent on
+
+" syntax should after filetype
+syntax enable
+syntax on " syntax highlighting on
 
 " 设置为双字宽显示，否则无法完整显示如:☆
 " set ambiwidth=double
@@ -36,6 +37,8 @@ set incsearch " do highlight as you type you search phrase
 set hlsearch
 set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
+
+set path+=**  " append subdirectories/subdirectories...
 
 " indent
 set autoindent " same level indent
@@ -88,8 +91,8 @@ set completeopt=menu,menuone,popup,noselect,noinsert
 " color
 "
 set background=dark " we plan to use a dark background
-" termguicolors
 set t_Co=256
+set termguicolors
 
 """"""""""""""""""""
 packadd! edge
