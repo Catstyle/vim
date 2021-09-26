@@ -85,14 +85,14 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
 
 " completion settings
-set completeopt=menu,menuone,popup,noselect,noinsert
+set completeopt=menu,menuone,popup,preview,noselect,noinsert
 
 "
 " color
 "
 set background=dark " we plan to use a dark background
 set t_Co=256
-set termguicolors
+" set termguicolors  " donot set this, :ter will look strange
 
 """"""""""""""""""""
 packadd! edge
@@ -311,7 +311,7 @@ nmap <C-s> <Plug>(ale_hover)
 
 
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8', 'pylint', 'pylsp'],
 \   'javascript': ['eslint'],
 \   'go': ['gopls'],
 \   'rust': ['cargo', 'analyzer'],
