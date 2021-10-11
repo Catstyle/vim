@@ -403,6 +403,4 @@ let g:jedi#smart_auto_mappings = 1
 " ultisnips
 "
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/mysnippets']
-" let g:UltiSnipsJumpForwardTrigge = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<leader>k"
-" let g:UltiSnipsRemoveSelectModeMappings = 1
+let g:UltiSnipsExpandTrigger = "<C-s><C-i>"

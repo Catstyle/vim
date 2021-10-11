@@ -1,0 +1,31 @@
+snippet apitpl "" b
+**************
+$1
+**************
+
+.. versionadded:: ${5:1.0.0}
+
+请求路由
+--------
+
+GET $2
+
+请求参数
+--------
+
+${3:无}
+
+返回值
+------
+
+.. code-block:: python
+
+    {
+        "status": {
+            "code": 0
+            "message": "OK",
+        },
+        "data": {$4},
+    }
+
+endsnippet

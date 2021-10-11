@@ -6,6 +6,13 @@ endsnippet
 
 snippet err "if err != nil" b
 if err != nil {
-    log.${1:Fatal}(err)
+    log.${1:Error}(err)
+    $0
+}
+endsnippet
+
+snippet cberr "" b
+if ${1:resp}, err = ${2:callfunc}; err != nil {
+    $0
 }
 endsnippet
