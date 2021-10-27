@@ -206,6 +206,7 @@ inoremap <nowait><expr> <C-y> ScrollPopup(-3) ? '' : '<C-y>'
 autocmd FileType python setlocal colorcolumn=79
 autocmd FileType python nmap <leader>r :ter python %<CR>
 autocmd FileType python nmap <leader>t :ter pytest %<CR>
+autocmd FileType python nmap <leader>T :ter pytest -v %<CR>
 
 
 "
@@ -326,6 +327,17 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 
+let g:ale_python_pylsp_config = {
+\   'pylsp': {
+\     'plugins': {
+\       'jedi_completion': {
+\         'enabled': v:false
+\       }
+\     }
+\   },
+\ }
+
+
 "
 " vim-go
 "
@@ -405,3 +417,13 @@ let g:jedi#smart_auto_mappings = 1
 "
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/mysnippets']
 let g:UltiSnipsExpandTrigger = "<C-s><C-i>"
+
+
+" Put these lines at the very end of your vimrc file.
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
