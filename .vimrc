@@ -332,7 +332,16 @@ let g:ale_python_pylsp_config = {
 \     'plugins': {
 \       'jedi_completion': {
 \         'enabled': v:false
-\       }
+\       },
+\       'pycodestyle': {
+\         'enabled': v:false
+\       },
+\       'flake8': {
+\         'enabled': v:false
+\       },
+\       'pyflakes': {
+\         'enabled': v:false
+\       },
 \     }
 \   },
 \ }
