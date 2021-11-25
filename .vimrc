@@ -368,6 +368,8 @@ let g:go_highlight_operators = 1
 """""""""""""""""""""""""""""""
 let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'gopls'
+let g:go_imports_autosave = 0
+let g:go_fmt_autosave = 0
 let g:go_fmt_command = "goimports" " add missing imports when save file
 let g:go_test_timeout = '10s'
 
@@ -381,6 +383,7 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run-split)
 autocmd FileType go nmap <leader>R  :ter go run main.go<CR>
 autocmd FileType go nmap <leader>t  <Plug>(go-test)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>gf <Plug>(go-fmt)
 
 
 "
