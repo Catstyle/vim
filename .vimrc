@@ -431,6 +431,17 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/mysnippets']
 let g:UltiSnipsExpandTrigger = "<C-s><C-i>"
 
 
+"
+" fzf vim plugin
+"
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
+" window - down / up / left / right
+let g:fzf_layout = { 'down': '40%' }
+
+nmap <Leader>o :FZF <CR>
+
+
 " Put these lines at the very end of your vimrc file.
 
 " Load all plugins now.
