@@ -354,7 +354,7 @@ autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 soft
 
 let g:go_code_completion_enabled = 0  " use ale for completion
 
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0  " use ale
 let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_fields = 1
