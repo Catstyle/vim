@@ -434,7 +434,11 @@ let g:UltiSnipsExpandTrigger = "<C-s><C-i>"
 "
 " fzf vim plugin
 "
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+if has("mac")
+    set rtp+=/usr/local/opt/fzf
+elseif has("unix")
+    set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+endif
 
 " window - down / up / left / right
 let g:fzf_layout = { 'down': '40%' }
