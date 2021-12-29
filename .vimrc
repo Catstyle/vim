@@ -125,7 +125,7 @@ nmap <Leader>Q :qa!<CR>
 nmap <Leader>b :<C-U>exe "buffer ".v:count<CR>
 nmap <Leader>wr <C-W><C-R>
 nmap <Leader>e :e<SPACE>
-nmap <Leader>f :find<SPACE>
+" nmap <Leader>f :find<SPACE>
 nmap <Leader>vs :vs<SPACE>
 
 nmap <Leader>pa %
@@ -141,7 +141,8 @@ xnoremap <C-k>  :m'<-2<cr>gv=gv
 xnoremap <C-j>  :m'>+<cr>gv=gv
 
 "search in project
-nnoremap <Leader>sp :Grep -r<CR><CR><CR>
+" nnoremap <Leader>sp :Grep -r<CR><CR><CR>
+nnoremap <Leader>sp :exe "Rg " . expand("<cword>") <CR>
 "search in buffer
 nnoremap <Leader>sb :GrepBuffer -r<CR><CR>
 
@@ -444,6 +445,14 @@ endif
 let g:fzf_layout = { 'down': '40%' }
 
 nmap <Leader>o :FZF <CR>
+nmap <Leader>f :Files <CR>
+
+" Global line completion (not just open buffers. ripgrep required.)
+inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
 
 " Put these lines at the very end of your vimrc file.
