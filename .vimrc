@@ -455,6 +455,13 @@ inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
   \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 
 
+"
+" tpope/vim-commentary
+"
+" !!!! <c-_> means CTRL+/
+noremap <c-_> :Commentary<cr>
+
+
 " Put these lines at the very end of your vimrc file.
 
 " Load all plugins now.
