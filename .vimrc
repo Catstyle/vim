@@ -38,7 +38,7 @@ set hlsearch
 set ignorecase " case insensitive by default
 set smartcase " if there are caps, go case-sensitive
 
-set path+=**  " append subdirectories/subdirectories...
+" set path+=**  " append subdirectories/subdirectories...
 
 " indent
 set autoindent " same level indent
@@ -68,7 +68,7 @@ set encoding=UTF-8
 set mmp=2000
 set shortmess+=c                     " Silence completion messages
 set shortmess-=S                     " Enable showing the search index
-set showbreak=>>>                    " Show clearly were linebreaks are applied
+" set showbreak=>>>                    " Show clearly were linebreaks are applied
 set spelllang=en_us                  " Set default spell check language to English US
 
 " wildmenu completion settings
