@@ -55,3 +55,6 @@
 [submodule ".vim/pack/git-plugins/start/commentary"]
 	path = .vim/pack/git-plugins/start/commentary
 	url = https://github.com/tpope/vim-commentary.git
+[submodule ".vim/pack/git-plugins/start/colorizer"]
+	path = .vim/pack/git-plugins/start/colorizer
+	url = https://github.com/chrisbra/Colorizer

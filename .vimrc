@@ -315,7 +315,7 @@ nmap <C-s> <Plug>(ale_hover)
 
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint', 'pylsp'],
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'tsserver'],
 \   'go': ['gopls'],
 \   'rust': ['cargo', 'analyzer'],
 \}
@@ -323,7 +323,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'python': ['autopep8'],
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'tsserver'],
 \   'go': ['gofmt', 'goimports', 'golines'],
 \   'rust': ['rustfmt'],
 \}
