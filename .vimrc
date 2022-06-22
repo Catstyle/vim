@@ -340,6 +340,9 @@ let g:ale_python_pylsp_config = {
 \       'flake8': {
 \         'enabled': v:false
 \       },
+\       'pylint': {
+\         'enabled': v:false
+\       },
 \       'pyflakes': {
 \         'enabled': v:false
 \       },
@@ -460,6 +463,16 @@ inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
 "
 " !!!! <c-_> means CTRL+/
 noremap <c-_> :Commentary<cr>
+
+
+"
+" multi cursor
+"
+let g:VM_maps = {}
+let g:VM_maps['Find Under'] = '<C-d>'  " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-d>'  " replace visual C-n
+" let g:VM_maps["Select Cursor Down"] = '<leader>n'  " start selecting down
+" let g:VM_maps["Select Cursor Up"] = '<leader>n'  " start selecting up
 
 
 " Put these lines at the very end of your vimrc file.

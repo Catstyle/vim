@@ -58,3 +58,9 @@
 [submodule ".vim/pack/git-plugins/start/colorizer"]
 	path = .vim/pack/git-plugins/start/colorizer
 	url = https://github.com/chrisbra/Colorizer
+[submodule ".vim/pack/plugins/start/vim-visual-multi"]
+	path = .vim/pack/plugins/start/vim-visual-multi
+	url = https://github.com/mg979/vim-visual-multi
+[submodule ".vim/pack/git-plugins/start/git-messenger"]
+	path = .vim/pack/git-plugins/start/git-messenger
+	url = https://github.com/rhysd/git-messenger.vim.git
