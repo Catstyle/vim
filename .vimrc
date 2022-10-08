@@ -7,6 +7,12 @@ set nocompatible " explictly get out of vi-compatible mode
 call plug#begin()
 
 " interface
+Plug 'ryanoasis/vim-devicons'
+
+Plug 'mengelbrecht/lightline-bufferline'
+  let g:lightline#bufferline#show_number = 2
+  let g:lightline#bufferline#enable_devicons = 1
+
 Plug 'itchyny/lightline.vim'
   let g:lightline = {
   \   'colorscheme': 'deus',
@@ -17,10 +23,17 @@ Plug 'itchyny/lightline.vim'
   \     ],
   \   },
   \   'tabline': {
-  \     'left': [ [ 'tabs' ] ],
+  \     'left': [ [ 'buffers' ] ],
+  \     'right': [ [ 'close' ] ],
   \   },
   \   'component_function': {
   \     'gitbranch': 'FugitiveHead'
+  \   },
+  \   'component_expand': {
+  \     'buffers': 'lightline#bufferline#buffers'
+  \   },
+  \   'component_type': {
+  \     'buffers': 'tabsel'
   \   },
   \ }
 
@@ -280,6 +293,7 @@ set number " turn on line numbers
 set relativenumber
 set ruler "always show current position along the bottom
 set laststatus=2 "always show status
+set showtabline=2 "always show tabline
 set statusline=%m\ %F\ %y\ %{&fileencoding?&fileencoding:&encoding}\ %=%(C:%c\ L:%l\ %P%)
 set nocursorline      "highlight current line
 set nocursorcolumn    "highlight current column
