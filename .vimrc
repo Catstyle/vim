@@ -49,6 +49,12 @@ Plug 'junegunn/limelight.vim'
 
 
 " display
+Plug 'APZelos/blamer.nvim' " show git blame
+  let g:blamer_enabled = 1
+  let g:blamer_delay = 500
+  let g:blamer_date_format = '%y-%m-%d %H:%M'
+  let g:blamer_show_in_insert_modes = 0
+
 Plug 'junegunn/vim-emoji'
   command! -range EmojiReplace <line1>,<line2>s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
 
@@ -128,7 +134,7 @@ Plug 'dense-analysis/ale'
   
   let g:ale_hover_cursor = 1
   let g:ale_floating_preview = 1
-  let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+  let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
   
   nnoremap <leader>gd :ALEGoToDefinition<CR>
   nnoremap <leader>fr :ALEFindReferences<CR>
@@ -138,6 +144,7 @@ Plug 'dense-analysis/ale'
   nmap <C-s> <Plug>(ale_hover)
   
   
+  let g:ale_lsp_suggestions = 1
   let g:ale_linters = {
   \   'python': ['flake8', 'pylint', 'pylsp'],
   \   'javascript': ['eslint', 'tsserver'],
@@ -178,6 +185,10 @@ Plug 'dense-analysis/ale'
 
 Plug 'metakirby5/codi.vim'
 Plug 'sheerun/vim-polyglot'
+
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'rhysd/vim-lsp-ale'
+"   let g:lsp_ale_auto_config_vim_lsp = 0
 
 
 " task
@@ -285,7 +296,11 @@ syntax enable
 syntax on " syntax highlighting on
 syntax sync minlines=256
 syntax sync maxlines=1024
-set synmaxcol=200
+set synmaxcol=4096
+
+set ttyfast " u got a fast terminal
+set ttyscroll=3
+set lazyredraw " to avoid scrolling problems
 
 " 设置为双字宽显示，否则无法完整显示如:☆
 " set ambiwidth=double
@@ -295,8 +310,8 @@ set ruler "always show current position along the bottom
 set laststatus=2 "always show status
 set showtabline=2 "always show tabline
 set statusline=%m\ %F\ %y\ %{&fileencoding?&fileencoding:&encoding}\ %=%(C:%c\ L:%l\ %P%)
-set nocursorline      "highlight current line
-set nocursorcolumn    "highlight current column
+set nocursorline      " do not highlight current line
+set nocursorcolumn    " do not highlight current column
 
 set colorcolumn=100
 set signcolumn=yes                   " Always show the sign column
