@@ -7,10 +7,20 @@ set nocompatible " explictly get out of vi-compatible mode
 call plug#begin()
 
 " interface
+Plug 'sainnhe/edge'
+  let g:edge_style = 'aura'
+  let g:edge_better_performance = 1
+  let g:edge_enable_italic = 1
+  let g:edge_diagnostic_text_highlight = 1
+  " let g:edge_dim_foreground = 1
+  let g:edge_transparent_background = 2
+  let g:edge_disable_terminal_colors = 1
+  " let g:edge_colors_override = {'bg0': ['#202020', '0'], 'bg2': ['#282828', '235']}
+
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'mengelbrecht/lightline-bufferline'
-  let g:lightline#bufferline#show_number = 2
+  let g:lightline#bufferline#show_number = 1
   let g:lightline#bufferline#enable_devicons = 1
 
 Plug 'itchyny/lightline.vim'
@@ -39,21 +49,15 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'mhinz/vim-startify'
 
-" color
-Plug 'sainnhe/edge'
-
-Plug 'junegunn/limelight.vim'
-  nmap <Leader>l <Plug>(Limelight)
-  xmap <Leader>l <Plug>(Limelight)
-  nnoremap <Leader>ll :Limelight!!<cr>
-
-
 " display
 Plug 'APZelos/blamer.nvim' " show git blame
-  let g:blamer_enabled = 1
-  let g:blamer_delay = 500
+  let g:blamer_enabled = 0
+  let g:blamer_delay = 1000
   let g:blamer_date_format = '%y-%m-%d %H:%M'
   let g:blamer_show_in_insert_modes = 0
+  let g:blamer_show_in_visual_modes = 0
+  nmap <Leader>gb :BlamerToggle<cr>
+  xmap <Leader>gb :BlamerToggle<cr>
 
 Plug 'junegunn/vim-emoji'
   command! -range EmojiReplace <line1>,<line2>s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
@@ -67,6 +71,11 @@ Plug 'gu-fan/riv.vim'
   let g:riv_disable_folding = 1
 
 Plug 'chrisbra/Colorizer'
+
+Plug 'junegunn/limelight.vim'
+  nmap <Leader>l <Plug>(Limelight)
+  xmap <Leader>l <Plug>(Limelight)
+  nnoremap <Leader>ll :Limelight!!<cr>
 
 
 " edit
@@ -384,11 +393,8 @@ set completeopt=menu,menuone,popup,preview,noselect,noinsert
 "
 set background=dark " we plan to use a dark background
 set t_Co=256
-" set termguicolors  " donot set this, :ter will look strange
-
-let g:edge_style = 'aura'
-let g:edge_transparent_background = 1
-let g:edge_diagnostic_text_highlight = 1
+set termguicolors  " donot set this, :ter will look strange
+set term=xterm-256color
 colorscheme edge
 
 """"""""""""""""""""
@@ -399,7 +405,6 @@ highlight ColorColumn ctermbg=0
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-set term=xterm-256color
 set gcr=a:block-blinkon0 " no blink cursor
 " set guifont=Source\ Code\ Pro\ For\ Powerline:h15
 set guifont=MesloLGS\ NF:h15
@@ -489,6 +494,8 @@ nnoremap <nowait><expr> <C-e> ScrollPopup(3) ? '' : '<C-e>'
 nnoremap <nowait><expr> <C-y> ScrollPopup(-3) ? '' : '<C-y>'
 inoremap <nowait><expr> <C-e> ScrollPopup(3) ? '' : '<C-e>'
 inoremap <nowait><expr> <C-y> ScrollPopup(-3) ? '' : '<C-y>'
+
+nnoremap <Leader>jp :%!python -m json.tool<CR>
 
 
 "
