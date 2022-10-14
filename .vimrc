@@ -14,7 +14,7 @@ Plug 'sainnhe/edge'
   let g:edge_diagnostic_text_highlight = 1
   " let g:edge_dim_foreground = 1
   let g:edge_transparent_background = 2
-  let g:edge_disable_terminal_colors = 1
+  let g:edge_disable_terminal_colors = 0
   " let g:edge_colors_override = {'bg0': ['#202020', '0'], 'bg2': ['#282828', '235']}
 
 Plug 'ryanoasis/vim-devicons'
@@ -391,19 +391,28 @@ set completeopt=menu,menuone,popup,preview,noselect,noinsert
 "
 " color
 "
+
 set background=dark " we plan to use a dark background
-set t_Co=256
-set termguicolors  " donot set this, :ter will look strange
-set term=xterm-256color
-colorscheme edge
+" set t_Co=256
+set t_Co=16777216
+" set term=xterm-256color
+
+" Inspect $TERM instad of t_Co as it works in neovim as well
+if &term =~ '256color'
+  " Enable true (24-bit) colors instead of (8-bit) 256 colors.
+  " :h true-color
+  if has('termguicolors')
+    " for vim inside tmux
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+  endif
+  colorscheme edge
+endif
 
 """"""""""""""""""""
 " reduce color of colorcolumn
 highlight ColorColumn ctermbg=0
-
-" for vim inside tmux
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set gcr=a:block-blinkon0 " no blink cursor
 " set guifont=Source\ Code\ Pro\ For\ Powerline:h15
