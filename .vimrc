@@ -1,6 +1,15 @@
 let mapleader=";" " prefix ';'
 set nocompatible " explictly get out of vi-compatible mode
 
+
+"=====================
+" general settings
+"=====================
+filetype on
+filetype plugin on
+filetype plugin indent on
+
+
 "=====================
 " plugins manager
 "=====================
@@ -10,7 +19,7 @@ call plug#begin()
 Plug 'sainnhe/edge'
   let g:edge_style = 'aura'
   let g:edge_better_performance = 1
-  let g:edge_enable_italic = 1
+  " let g:edge_enable_italic = 1
   let g:edge_diagnostic_text_highlight = 1
   " let g:edge_dim_foreground = 1
   let g:edge_transparent_background = 2
@@ -159,6 +168,7 @@ Plug 'dense-analysis/ale'
   \   'javascript': ['eslint', 'tsserver'],
   \   'go': ['gopls'],
   \   'rust': ['cargo', 'analyzer'],
+  \   'cs': ['OmniSharp'],
   \}
   
   let g:ale_fixers = {
@@ -193,7 +203,71 @@ Plug 'dense-analysis/ale'
 
 
 Plug 'metakirby5/codi.vim'
+
+" for syntax highlight
 Plug 'sheerun/vim-polyglot'
+
+" CSharp
+" Plug 'OrangeT/vim-csharp', {'for':['cs','csx','cshtml.html','csproj','solution']}
+Plug 'OmniSharp/omnisharp-vim', {'for':['cs','csx','cshtml.html','csproj','solution'], 'on': ['OmniSharpInstall']}
+  let g:OmniSharp_server_stdio = 1
+  let g:OmniSharp_server_use_net6 = 1
+  let g:OmniSharp_selector_ui = ''  " Use vim - command line, quickfix etc.
+  " let g:OmniSharp_selector_ui = 'fzf'
+  " let g:OmniSharp_selector_findusages = 'fzf'
+  let g:OmniSharp_highlight_types = 2
+
+  " augroup my_omnisharp
+  "     autocmd!
+  "     au FileType cs nmap <buffer> <silent> ga :OmniSharpGetCodeActions<CR>
+  "     au FileType cs nmap <buffer> <silent> gd :OmniSharpGotoDefinition<CR>
+  "     au FileType cs nmap <buffer> <silent> gq :OmniSharpCodeFormat<CR>
+  "     au FileType cs nmap <buffer> <silent> gu :OmniSharpFixUsings<CR>
+  "     au FileType cs nmap <buffer> <silent> gf :OmniSharpFindUsages<CR>
+  "     au FileType cs nmap <buffer> <silent> gK :OmniSharpDocumentation<CR>
+  "     au FileType cs nmap <buffer> <silent> grn :OmniSharpRename<CR>
+  " augroup END
+  augroup omnisharp_commands
+      autocmd!
+
+      " Show type information automatically when the cursor stops moving.
+      " Note that the type is echoed to the Vim command line, and will overwrite
+      " any other messages in this space including e.g. ALE linting messages.
+      autocmd CursorHold *.cs OmniSharpTypeLookup
+
+      " The following commands are contextual, based on the cursor position.
+      autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osfu <Plug>(omnisharp_find_usages)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osfi <Plug>(omnisharp_find_implementations)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>ospd <Plug>(omnisharp_preview_definition)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>ospi <Plug>(omnisharp_preview_implementations)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>ost <Plug>(omnisharp_type_lookup)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osd <Plug>(omnisharp_documentation)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osfs <Plug>(omnisharp_find_symbol)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osfx <Plug>(omnisharp_fix_usings)
+      autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+      autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+
+      " Navigate up and down by method/property/field
+      autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+      autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
+      " Find all code errors/warnings for the current solution and populate the quickfix window
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osgcc <Plug>(omnisharp_global_code_check)
+      " Contextual code actions (uses fzf, vim-clap, CtrlP or unite.vim selector when available)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+      autocmd FileType cs xmap <silent> <buffer> <Leader>osca <Plug>(omnisharp_code_actions)
+      " Repeat the last code action performed (does not use a selector)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+      autocmd FileType cs xmap <silent> <buffer> <Leader>os. <Plug>(omnisharp_code_action_repeat)
+
+      autocmd FileType cs nmap <silent> <buffer> <Leader>os= <Plug>(omnisharp_code_format)
+
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osnm <Plug>(omnisharp_rename)
+
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osre <Plug>(omnisharp_restart_server)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
+      autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
+    augroup END
 
 " Plug 'prabirshrestha/vim-lsp'
 " Plug 'rhysd/vim-lsp-ale'
@@ -224,12 +298,13 @@ Plug 'mattn/vim-notification'
 
 " languages
 Plug 'davidhalter/jedi-vim'
-  " <leader>r almost map to run code
-  let g:jedi#rename_command = "<leader>rn"
-  
   let g:jedi#popup_on_dot = 0
   let g:jedi#show_call_signatures = 2
   let g:jedi#smart_auto_mappings = 1
+  let g:jedi#auto_vim_configuration = 0
+
+  " <leader>r almost map to run code
+  let g:jedi#rename_command = "<leader>rn"
 
 Plug 'fatih/vim-go'
   autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
@@ -291,14 +366,6 @@ call plug#end()
 "=====================
 " end plug
 "=====================
-
-
-"=====================
-" general settings
-"=====================
-filetype on
-filetype plugin on
-filetype plugin indent on
 
 " syntax should after filetype
 syntax enable
@@ -541,6 +608,13 @@ autocmd FileType markdown setlocal conceallevel=2
 " reStructureText
 "
 autocmd FileType rst nmap <leader>ctt :<C-U>exe "RivTitle".v:count<CR>
+
+
+"
+" js
+"
+autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 
 
