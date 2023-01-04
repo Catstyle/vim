@@ -173,5 +173,6 @@ lib
 *.netrwhist
 .vim/.netrwhist
 **/tags
+**/doc/
 **/pnpm-lock.yaml
 node_modules

@@ -38,23 +38,29 @@ Plug 'itchyny/lightline.vim'
   \   'active': {
   \     'left': [
   \       ['mode', 'paste'],
-  \       ['gitbranch', 'readonly', 'filename', 'modified'],
+  \       ['gitbranch', 'readonly', 'relativepath', 'modified'],
   \     ],
   \   },
   \   'tabline': {
   \     'left': [ [ 'buffers' ] ],
-  \     'right': [ [ 'close' ] ],
+  \     'right': [ [ 'clock' ] ],
   \   },
   \   'component_function': {
-  \     'gitbranch': 'FugitiveHead'
+  \     'gitbranch': 'FugitiveHead',
   \   },
   \   'component_expand': {
-  \     'buffers': 'lightline#bufferline#buffers'
+  \     'buffers': 'lightline#bufferline#buffers',
+  \     'clock': 'ShowTime',
   \   },
   \   'component_type': {
-  \     'buffers': 'tabsel'
+  \     'buffers': 'tabsel',
+  \     'clock': 'tabsel',
   \   },
   \ }
+
+  function! ShowTime()
+    return strftime('%m-%d %H:%M:%S')
+  endfunction
 
 Plug 'mhinz/vim-startify'
 
@@ -411,7 +417,9 @@ set smartcase " if there are caps, go case-sensitive
 " indent
 set autoindent " same level indent
 set smartindent " next level indent
+set cindent
 set expandtab
+set smarttab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -615,6 +623,13 @@ autocmd FileType rst nmap <leader>ctt :<C-U>exe "RivTitle".v:count<CR>
 "
 autocmd FileType javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType vue setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+function! Update(timerID)
+  silent redrawtabline
+endfunction
+
+call timer_start(1000, 'Update', {'repeat': -1})
 
 
 
