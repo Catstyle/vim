@@ -170,7 +170,7 @@ Plug 'dense-analysis/ale'
   
   let g:ale_lsp_suggestions = 1
   let g:ale_linters = {
-  \   'python': ['flake8', 'pylint', 'pylsp'],
+  \   'python': ['ruff'],
   \   'javascript': ['eslint', 'tsserver'],
   \   'go': ['gopls'],
   \   'rust': ['cargo', 'analyzer'],
@@ -179,7 +179,7 @@ Plug 'dense-analysis/ale'
   
   let g:ale_fixers = {
   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \   'python': ['autopep8'],
+  \   'python': ['ruff', 'autopep8'],
   \   'javascript': ['eslint', 'tsserver'],
   \   'go': ['gofmt', 'goimports', 'golines'],
   \   'rust': ['rustfmt'],
